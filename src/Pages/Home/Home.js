@@ -6,13 +6,18 @@ import {
   FaPhoneAlt,
   FaUserGraduate,
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import HomeCarousel from "../HomeCarousel/HomeCarousel";
 import homeBG1 from "../../Images/homeBg.jpg";
 import homeBG2 from "../../Images/homeBg2.jpg";
 import Share from "./Share";
 
 const Home = () => {
+  const { id } = useParams();
+  if (id) {
+    console.log("ID from params", id);
+  }
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
