@@ -13,7 +13,7 @@ import homeBG2 from "../../Images/homeBg2.jpg";
 import couponImage from "./meta-img/coupon.png";
 // import MetaDecorator from "./MetaDecorator";
 import Share from "./Share";
-import { Helmet } from "react-helmet-async";
+// import { Helmet } from "react-helmet-async";
 import MetaDecorator from "./MetaDecorator";
 const Home = () => {
   const { id } = useParams();
@@ -36,6 +36,9 @@ const Home = () => {
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
   };
+  const coupon = "erohuawhprguahirguir";
+  const completeUrl = `https://654f7e53154d803276c5e0a5--enchanting-fenglisu-8eb9f5.netlify.app/${coupon}`;
+  console.log(completeUrl);
   const shareUrl =
     "https://654f7e53154d803276c5e0a5--enchanting-fenglisu-8eb9f5.netlify.app/";
   const quote = "This is a test share for Facebook";
@@ -93,7 +96,18 @@ const Home = () => {
         </div>
       </div>
       <MetaDecorator absoluteImageUrl={absoluteImageUrl} shareUrl={shareUrl} />
-      {/* <Helmet>
+
+      <Button variant="primary" onClick={handleShow}>
+        Share
+      </Button>
+      <Share show={show} fn={handleClose} shareUrl={shareUrl} quote={quote} />
+    </div>
+  );
+};
+
+export default Home;
+
+/* <Helmet>
         <meta
           property="og:title"
           content="Discount Coupon"
@@ -131,13 +145,4 @@ const Home = () => {
           content="630"
           data-react-helmet={true}
         />
-      </Helmet> */}
-      <Button variant="primary" onClick={handleShow}>
-        Share
-      </Button>
-      <Share show={show} fn={handleClose} shareUrl={shareUrl} quote={quote} />
-    </div>
-  );
-};
-
-export default Home;
+      </Helmet> */

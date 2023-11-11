@@ -9,6 +9,7 @@ import {
 } from "react-share";
 
 const Share = ({ show, fn, shareUrl, quote }) => {
+  // console.log(shareUrl);
   // Replace the URL with the link you want to share
   const shareFacebook = () => {
     const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
