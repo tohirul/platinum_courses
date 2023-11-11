@@ -14,6 +14,7 @@ import couponImage from "./meta-img/coupon.png";
 // import MetaDecorator from "./MetaDecorator";
 import Share from "./Share";
 import { Helmet } from "react-helmet-async";
+import MetaDecorator from "./MetaDecorator";
 const Home = () => {
   const { id } = useParams();
   if (id) {
@@ -91,8 +92,8 @@ const Home = () => {
           </Button>
         </div>
       </div>
-      {/* <MetaDecorator thumb={absoluteImageUrl} shareUrl={shareUrl} /> */}
-      <Helmet>
+      <MetaDecorator absoluteImageUrl={absoluteImageUrl} shareUrl={shareUrl} />
+      {/* <Helmet>
         <meta
           property="og:title"
           content="Discount Coupon"
@@ -130,7 +131,7 @@ const Home = () => {
           content="630"
           data-react-helmet={true}
         />
-      </Helmet>
+      </Helmet> */}
       <Button variant="primary" onClick={handleShow}>
         Share
       </Button>

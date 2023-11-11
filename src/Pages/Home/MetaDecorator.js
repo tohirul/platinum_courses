@@ -1,20 +1,38 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 
-const MetaDecorator = ({ thumb, shareUrl }) => {
+const MetaDecorator = ({ absoluteImageUrl, shareUrl }) => {
   return (
     <Helmet>
-      <meta property="og:title" content="Discount Coupon" />
-      <meta property="og:description" content="Discount coupon code" />
-
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content={shareUrl} />
-      {/* <meta property="og:image" content="https://metatags.io/images/meta-tags.png" /> */}
-      <meta property="og:image" content={thumb} />
-      <meta property="og:image:type" content="image/png" />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-      <meta property="og:url" content={shareUrl} />
+      <meta
+        property="og:title"
+        content="Discount Coupon"
+        data-react-helmet={true}
+      />
+      <meta
+        property="og:description"
+        content="Discount coupon code"
+        data-react-helmet={true}
+      />
+      <meta property="og:type" content="website" data-react-helmet={true} />
+      <meta property="og:url" content={shareUrl} data-react-helmet={true} />
+      <meta
+        property="fb:app_id"
+        content="1255815975094440"
+        data-react-helmet={true}
+      />
+      <meta
+        property="og:image"
+        content={absoluteImageUrl}
+        data-react-helmet={true}
+      />
+      <meta
+        property="og:image:type"
+        content="image/png"
+        data-react-helmet={true}
+      />
+      <meta property="og:image:width" content="1200" data-react-helmet={true} />
+      <meta property="og:image:height" content="630" data-react-helmet={true} />
     </Helmet>
   );
 };

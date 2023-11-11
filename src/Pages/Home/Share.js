@@ -36,8 +36,8 @@ const Share = ({ show, fn, shareUrl, quote }) => {
     )}%20${encodeURIComponent(shareUrl)}`;
 
     // Adjust width and height based on your preference
-    const width = 1200;
-    const height = 800;
+    const width = 900;
+    const height = 600;
 
     // Calculate the center of the screen for positioning
     const left = (window.innerWidth - width) / 2 + window.screenX;
@@ -49,6 +49,31 @@ const Share = ({ show, fn, shareUrl, quote }) => {
       "WhatsAppSharePopup",
       `width=${width},height=${height},left=${left},top=${top}`
     );
+  };
+  const shareMessenger = () => {
+    const messengerShareUrl = `https://www.facebook.com/dialog/send?app_id=1255815975094440&link=${encodeURIComponent(
+      shareUrl
+    )}&redirect_uri=${encodeURIComponent(shareUrl)}`;
+
+    // Adjust width and height based on your preference
+    const width = 600;
+    const height = 400;
+
+    // Calculate the center of the screen for positioning
+    const left = (window.innerWidth - width) / 2 + window.screenX;
+    const top = (window.innerHeight - height) / 2 + window.screenY;
+
+    // Open a popup window with the Messenger share URL
+    window.open(
+      messengerShareUrl,
+      "MessengerSharePopup",
+      `width=${width},height=${height},left=${left},top=${top}`
+    );
+    // const messengerLink = `fb-messenger://share/?link=${encodeURIComponent(
+    //   shareUrl
+    // )}`;
+
+    // window.location.href = messengerLink;
   };
   return (
     <Modal show={show} onHide={fn}>
@@ -64,10 +89,13 @@ const Share = ({ show, fn, shareUrl, quote }) => {
           <WhatsappIcon size={32} round />
         </WhatsappShareButton>
         <Button variant="info" onClick={shareFacebook}>
-          share facebook
+          facebook
         </Button>{" "}
         <Button variant="info" onClick={shareWhatsapp}>
-          share whatsapp
+          whatsapp
+        </Button>{" "}
+        <Button variant="info" onClick={shareMessenger}>
+          messenger
         </Button>{" "}
         <Button variant="secondary" onClick={fn}>
           Close
