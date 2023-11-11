@@ -1,37 +1,79 @@
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
 
-const Share = ({ show, fn }) => {
-  const handleShare = () => {
-    // Replace the URL with the link you want to share
-    const shareUrl = "https://enchanting-fenglisu-8eb9f5.netlify.app/";
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+} from "react-share";
 
-    // Open Facebook sharing URL in a new window
+const Share = ({ show, fn, shareUrl, quote }) => {
+  // Replace the URL with the link you want to share
+  const shareFacebook = () => {
+    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+      shareUrl
+    )}&quote=${encodeURIComponent(quote)}`;
+
+    // Adjust width and height based on your preference
+    const width = 600;
+    const height = 400;
+
+    // Calculate the center of the screen for positioning
+    const left = (window.innerWidth - width) / 2 + window.screenX;
+    const top = (window.innerHeight - height) / 2 + window.screenY;
+
+    // Open a popup window with the Facebook share URL
     window.open(
-      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-        shareUrl
-      )}`,
-      "Share on Facebook",
-      "width=600,height=400"
+      facebookShareUrl,
+      "FacebookSharePopup",
+      `width=${width},height=${height},left=${left},top=${top}`
     );
   };
+  const shareWhatsapp = () => {
+    const whatsappShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(
+      quote
+    )}%20${encodeURIComponent(shareUrl)}`;
 
+    // Adjust width and height based on your preference
+    const width = 1200;
+    const height = 800;
+
+    // Calculate the center of the screen for positioning
+    const left = (window.innerWidth - width) / 2 + window.screenX;
+    const top = (window.innerHeight - height) / 2 + window.screenY;
+
+    // Open a popup window with the WhatsApp share URL
+    window.open(
+      whatsappShareUrl,
+      "WhatsAppSharePopup",
+      `width=${width},height=${height},left=${left},top=${top}`
+    );
+  };
   return (
     <Modal show={show} onHide={fn}>
-      <Modal.Header closeButton>
-        <Modal.Title>Share on Facebook</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>Click the button below to share on Facebook:</Modal.Body>
       <Modal.Footer>
+        <Modal.Header closeButton>
+          <Modal.Title>Share on Facebook</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Click the button below to share on Facebook:</Modal.Body>
+        <FacebookShareButton url={shareUrl} title={quote}>
+          <FacebookIcon size={32} round />
+        </FacebookShareButton>
+        <WhatsappShareButton url={shareUrl} title={quote}>
+          <WhatsappIcon size={32} round />
+        </WhatsappShareButton>
+        <Button variant="info" onClick={shareFacebook}>
+          share facebook
+        </Button>{" "}
+        <Button variant="info" onClick={shareWhatsapp}>
+          share whatsapp
+        </Button>{" "}
         <Button variant="secondary" onClick={fn}>
           Close
-        </Button>
-        <Button variant="info" onClick={handleShare}>
-          Share on Facebook
         </Button>
       </Modal.Footer>
     </Modal>
   );
 };
-
 export default Share;

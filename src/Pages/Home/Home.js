@@ -10,8 +10,10 @@ import { Link, useParams } from "react-router-dom";
 import HomeCarousel from "../HomeCarousel/HomeCarousel";
 import homeBG1 from "../../Images/homeBg.jpg";
 import homeBG2 from "../../Images/homeBg2.jpg";
+import couponImage from "./meta-img/coupon.png";
+// import MetaDecorator from "./MetaDecorator";
 import Share from "./Share";
-
+import { Helmet } from "react-helmet-async";
 const Home = () => {
   const { id } = useParams();
   if (id) {
@@ -33,6 +35,12 @@ const Home = () => {
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
   };
+  const shareUrl =
+    "https://654f7e53154d803276c5e0a5--enchanting-fenglisu-8eb9f5.netlify.app/";
+  const quote = "This is a test share for Facebook";
+  const absoluteImageUrl =
+    `https://654f7e53154d803276c5e0a5--enchanting-fenglisu-8eb9f5.netlify.app/static/media/coupon.f58da3c43ed533064608.png` ||
+    `${window.location.origin}${couponImage}`;
   return (
     <div className="container mt-5 mb-5 p-3 pt-0">
       <div
@@ -83,10 +91,50 @@ const Home = () => {
           </Button>
         </div>
       </div>
+      {/* <MetaDecorator thumb={absoluteImageUrl} shareUrl={shareUrl} /> */}
+      <Helmet>
+        <meta
+          property="og:title"
+          content="Discount Coupon"
+          data-react-helmet={true}
+        />
+        <meta
+          property="og:description"
+          content="Discount coupon code"
+          data-react-helmet={true}
+        />
+        <meta property="og:type" content="website" data-react-helmet={true} />
+        <meta property="og:url" content={shareUrl} data-react-helmet={true} />
+        <meta
+          property="fb:app_id"
+          content="1255815975094440"
+          data-react-helmet={true}
+        />
+        <meta
+          property="og:image"
+          content={absoluteImageUrl}
+          data-react-helmet={true}
+        />
+        <meta
+          property="og:image:type"
+          content="image/png"
+          data-react-helmet={true}
+        />
+        <meta
+          property="og:image:width"
+          content="1200"
+          data-react-helmet={true}
+        />
+        <meta
+          property="og:image:height"
+          content="630"
+          data-react-helmet={true}
+        />
+      </Helmet>
       <Button variant="primary" onClick={handleShow}>
         Share
       </Button>
-      <Share show={show} fn={handleClose} />
+      <Share show={show} fn={handleClose} shareUrl={shareUrl} quote={quote} />
     </div>
   );
 };
